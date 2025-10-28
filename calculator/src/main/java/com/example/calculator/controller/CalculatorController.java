@@ -32,8 +32,12 @@ public class CalculatorController {
                 mess = "Result Multiplication: " + result;
                 break;
             case "/":
-                result = firstNum / secondNum;
-                mess = "Result Divide: " + result;
+                if (secondNum == 0) {
+                    mess = "Result Divide: Not valid";
+                } else {
+                    result = firstNum / secondNum;
+                    mess = "Result Divide: " + result;
+                }
                 break;
         }
         redirectAttributes.addFlashAttribute("mess", mess);
