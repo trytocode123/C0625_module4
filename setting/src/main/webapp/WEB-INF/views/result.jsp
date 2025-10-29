@@ -47,5 +47,9 @@
     <pre style="white-space: pre-wrap; margin: 0; font-family: inherit"><c:out value="${setting.signature}"
                                                                                escapeXml="false"/></pre>
 </div>
+<button>
+    <a style="text-decoration: none; color: black" href="/home/form">Update
+    </a>
+</button>
 </body>
 </html>

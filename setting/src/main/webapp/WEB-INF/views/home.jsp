@@ -50,7 +50,11 @@
     </div>
 
     <button>Update</button>
-    <button type="button">Cancel</button>
+    <button>
+        Cancel
+    </button>
+
 </form:form>
+
 </body>
 </html>
