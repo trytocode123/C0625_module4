@@ -12,8 +12,7 @@ public class SettingService implements ISettingService {
     public SettingService(SettingRepository settingRepository) {
         this.settingRepository = settingRepository;
     }
-
-
+    
     @Override
     public Setting update(Setting setting) {
         return settingRepository.update(setting);
