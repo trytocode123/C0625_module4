@@ -1,6 +1,8 @@
 package com.example.setting.controller;
 
 import com.example.setting.entity.Setting;
+import com.example.setting.service.ISettingService;
+import com.example.setting.service.SettingService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/home")
 public class SettingController {
+    private final SettingService settingService;
+
+    public SettingController(SettingService settingService) {
+        this.settingService = settingService;
+    }
+
     @GetMapping(value = "/form")
     public String showForm(Model model) {
         model.addAttribute("lans", List.of(" English", "Vietnamese", "Japanese", "Chinese"));
@@ -21,7 +29,9 @@ public class SettingController {
 
     @PostMapping(value = "/update")
     public String update(@ModelAttribute Setting setting, Model model) {
+      Setting settingUpdate =  settingService.update(setting);
         model.addAttribute("setting", setting);
+
         return "result";
     }
 }
