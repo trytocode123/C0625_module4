@@ -52,4 +52,14 @@ public class ProductService implements IProductService {
         }
         return false;
     }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        return productRepository.searchByName(name);
+    }
+
+    @Override
+    public boolean add(Product product) {
+        return productRepository.add(product);
+    }
 }

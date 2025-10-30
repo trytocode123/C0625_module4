@@ -14,4 +14,6 @@ public interface IProductService {
     Product find(int id);
 
     boolean update(Product product);
+    List<Product> searchByName(String name);
+    boolean add(Product product);
 }

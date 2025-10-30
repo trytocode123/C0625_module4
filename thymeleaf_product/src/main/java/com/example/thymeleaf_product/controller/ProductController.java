@@ -51,4 +51,26 @@ public class ProductController {
         return "redirect:/product/list";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam("nameSearch") String nameSearch, Model model) {
+        List<Product> productList = productService.searchByName(nameSearch);
+        if (!productList.isEmpty()) {
+            model.addAttribute("productList", productList);
+        } else {
+            model.addAttribute("mess", "Not found any product");
+        }
+        return "/product/list";
+    }
+
+    @GetMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("product", new Product());
+        return "/product/add";
+    }
+
+    @PostMapping("/add")
+    public String saveAdd(@ModelAttribute Product product) {
+        productService.add(product);
+        return "redirect:/product/list";
+    }
 }

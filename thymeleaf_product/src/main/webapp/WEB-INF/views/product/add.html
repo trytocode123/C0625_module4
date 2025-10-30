@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:insert="~{layout/layout.html::library(title)}"/>
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add Product</h4>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/product/add}" th:object="${product}" method="post">
+                        <div class="mb-3">
+                            <label for="id" class="form-label">Id</label>
+                            <input type="text" th:field="*{id}" class="form-control" id="id">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="number" th:field="*{price}" class="form-control" id="price">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea th:field="*{description}" class="form-control" id="description"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="producer" class="form-label">Producer</label>
+                            <input type="text" th:field="*{producer}" class="form-control" id="producer">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
