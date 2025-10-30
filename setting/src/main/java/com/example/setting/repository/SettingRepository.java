@@ -1,9 +1,9 @@
 package com.example.setting.repository;
 
 import com.example.setting.entity.Setting;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 
-@Controller
+@Repository
 public class SettingRepository implements ISettingRepository {
     @Override
     public Setting update(Setting setting) {

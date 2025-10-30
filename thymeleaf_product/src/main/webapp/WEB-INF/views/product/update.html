@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Product</title>
+    <th:block th:insert="~{layout/layout.html::library(title)}"/>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: "Poppins", sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            display: block;
+            color: #212529;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical; /* cho phép kéo cao thêm */
+            min-height: 100px; /* chiều cao mặc định */
+        }
+
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0069d9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 123, 255, 0.2);
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #007bff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+<form th:object="${product}" action="product/update" method="post">
+    <h3>Update</h3>
+
+    <label>Name:</label>
+    <input th:value="${product.getName()}" name="name">
+
+    <label>Price:</label>
+    <input th:value="${#strings.replace(#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 3, 'POINT'), '.000', '')}" name="price">
+
+    <label>Description:</label>
+    <textarea name="description" th:text="${product.getDescription()}"></textarea>
+
+    <label>Producer:</label>
+    <input th:value="${product.getProducer()}" name="producer">
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

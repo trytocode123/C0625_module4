@@ -5,8 +5,6 @@ import com.example.setting.entity.Setting;
 import com.example.setting.repository.SettingRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-
 @Service
 public class SettingService implements ISettingService {
     private final SettingRepository settingRepository;

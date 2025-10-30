@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:insert="~{layout/layout.html::library(title)}"/>
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: "Segoe UI", sans-serif;
+    }
+
+    label {
+        font-weight: 500;
+        color: #212529;
+    }
+
+    .price {
+        color: #198754;
+        font-weight: 600;
+    }
+
+    .container {
+        max-width: 600px;
+        margin-top: 60px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<body>
+<div class="container">
+
+    <div class="mb-3">
+        <span class="fw-semibold">Name:</span>
+        <label th:text="${product.getName()}"></label>
+    </div>
+
+    <div class="mb-3">
+        <span class="fw-semibold">Price:</span>
+        <label class="price"
+               th:text="${#strings.replace(#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 3, 'POINT'), '.000', '') + ' ₫'}"></label>
+    </div>
+
+    <div class="mb-3">
+        <span class="fw-semibold">Producer:</span>
+        <label th:text="${product.getProducer()}"></label>
+    </div>
+
+    <div class="mb-3">
+        <span class="fw-semibold">Description:</span>
+        <label th:text="${product.getDescription()}"></label>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-outline-primary px-4">Quay lại</a>
+    </div>
+</div>
+</body>
+</html>
