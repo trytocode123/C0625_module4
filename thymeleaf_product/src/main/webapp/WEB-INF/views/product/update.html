@@ -86,19 +86,18 @@
 <body>
 <form th:object="${product}" action="/product/update" method="post">
     <h3>Update</h3>
-    <input th:type="hidden" th:field="*{id}" th:value="${product.getId()}">
+    <input th:type="hidden" th:field="*{id}">
     <label>Name:</label>
-    <input th:value="${product.getName()}" th:field="*{name}">
+    <input th:field="*{name}">
 
     <label>Price:</label>
-    <input th:field="*{price}"
-           th:value="${#strings.replace(#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 3, 'POINT'), '.000', '')}">
+    <input type="text" th:field="*{price}">
 
     <label>Description:</label>
     <textarea th:field="*{description}" th:text="${product.getDescription()}"></textarea>
 
     <label>Producer:</label>
-    <input th:value="${product.getProducer()}" th:field="*{producer}">
+    <input th:field="*{producer}">
 
     <button>Update</button>
 </form>
