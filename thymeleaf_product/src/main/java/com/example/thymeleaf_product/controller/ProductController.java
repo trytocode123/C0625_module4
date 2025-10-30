@@ -47,6 +47,7 @@ public class ProductController {
     @PostMapping("/update")
     public String saveUpdate(@ModelAttribute Product product) {
         productService.update(product);
+        System.out.println(product.getId());
         return "redirect:/product/list";
     }
 

@@ -46,7 +46,7 @@
 
         input:focus, textarea:focus {
             border-color: #007bff;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
             outline: none;
         }
 
@@ -84,22 +84,23 @@
 </head>
 
 <body>
-<form th:object="${product}" action="product/update" method="post">
+<form th:object="${product}" action="/product/update" method="post">
     <h3>Update</h3>
-
+    <input th:type="hidden" th:field="*{id}" th:value="${product.getId()}">
     <label>Name:</label>
-    <input th:value="${product.getName()}" name="name">
+    <input th:value="${product.getName()}" th:field="*{name}">
 
     <label>Price:</label>
-    <input th:value="${#strings.replace(#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 3, 'POINT'), '.000', '')}" name="price">
+    <input th:field="*{price}"
+           th:value="${#strings.replace(#numbers.formatDecimal(product.getPrice(), 0, 'COMMA', 3, 'POINT'), '.000', '')}">
 
     <label>Description:</label>
-    <textarea name="description" th:text="${product.getDescription()}"></textarea>
+    <textarea th:field="*{description}" th:text="${product.getDescription()}"></textarea>
 
     <label>Producer:</label>
-    <input th:value="${product.getProducer()}" name="producer">
+    <input th:value="${product.getProducer()}" th:field="*{producer}">
 
-    <button type="submit">Update</button>
+    <button>Update</button>
 </form>
 
 </body>
