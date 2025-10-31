@@ -46,11 +46,7 @@ public class ProductService implements IProductService {
 
     @Override
     public boolean update(Product product) {
-        int i = findById(product.getId());
-        if (i != -1) {
-            return productRepository.update(product, i);
-        }
-        return false;
+        return productRepository.update(product);
     }
 
     @Override

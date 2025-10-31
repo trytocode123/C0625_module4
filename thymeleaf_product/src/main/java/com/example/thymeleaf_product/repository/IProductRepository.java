@@ -11,7 +11,7 @@ public interface IProductRepository {
 
     Product find(int id);
 
-    boolean update(Product product, int i);
+    boolean update(Product product);
 
     List<Product> searchByName(String name);
 
