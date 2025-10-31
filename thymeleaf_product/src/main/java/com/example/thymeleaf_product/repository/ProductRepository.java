@@ -21,9 +21,16 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public boolean delete(int i) {
+    public boolean delete(Product product) {
         Session session = ConnectionUtil.sessionFactory.openSession();
-        TypedQuery<Product> typedQuery = session.createQuery("from Product");
+        try {
+            Transaction transaction = session.getTransaction();
+            transaction.begin();
+            session.remove(product);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return true;
     }
 
@@ -59,14 +66,13 @@ public class ProductRepository implements IProductRepository {
 
     @Override
     public List<Product> searchByName(String name) {
-        List<Product> products = findAll();
-        List<Product> productsSearch = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getName().contains(name)) {
-                productsSearch.add(product);
-            }
+        try (Session session = ConnectionUtil.sessionFactory.openSession()) {
+            TypedQuery<Product> typedQuery =
+                    session.createNativeQuery("SELECT * FROM product WHERE name LIKE ?", Product.class);
+            typedQuery.setParameter(1, "%" + name + "%");
+
+            return typedQuery.getResultList();
         }
-        return productsSearch;
     }
 
     @Override

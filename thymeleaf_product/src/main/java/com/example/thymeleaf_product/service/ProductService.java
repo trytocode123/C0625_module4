@@ -21,9 +21,9 @@ public class ProductService implements IProductService {
 
     @Override
     public boolean delete(int id) {
-        int i = findById(id);
-        if (i != -1) {
-            return productRepository.delete(i);
+        Product product = find(id);
+        if (product != null) {
+            return productRepository.delete(product);
         }
         return false;
     }

@@ -8,6 +8,7 @@ public class Product {
     private int id;
     private String name;
     private int price;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String producer;
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface IProductRepository {
     List<Product> findAll();
 
-    boolean delete(int id);
+    boolean delete(Product product);
 
     Product find(int id);
 

@@ -19,8 +19,11 @@ public class ProductController {
 
     @GetMapping("/list")
     public String showList(Model model) {
-        List<Product> productList = productService.findAll();
-        model.addAttribute("productList", productList);
+        List<Product> productList = productService.findAll();if (!productList.isEmpty()) {
+            model.addAttribute("productList", productList);
+        } else {
+            model.addAttribute("mess", "Not found any product");
+        }
         return "product/list";
     }
 
